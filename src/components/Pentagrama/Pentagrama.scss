@@ -9,9 +9,29 @@
     top: -1rem;
   }
   .linea {
-    width: 100%;
+    width: 0;
+    @for $i from 1 through 5 {
+      &.linea-#{6-$i} {
+        animation-delay: $i * (1.5s / 18);
+      }
+    }
+    animation: crecer 1.5s ease forwards;
     background-color: #000;
     height: 3px;
     margin: 1rem 0;
+  }
+  .notas {
+    margin: 0 2rem 0 6.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@keyframes crecer {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
   }
 }

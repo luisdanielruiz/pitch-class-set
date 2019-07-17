@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Pentagrama from "./components/Pentagrama/Pentagrama";
 import FormOpciones from "./components/FormOpciones/FormOpciones";
-import "./App.css";
+import "./App.scss";
 
 const App = () => {
   let [notasGeneradas, setNotasGeneradas] = useState([]);
 
   const handleSubmit = ({ numNotas }) => {
-    console.log(numNotas);
     setNotasGeneradas(generarNotas(numNotas));
   };
 
@@ -32,8 +31,11 @@ const App = () => {
       arrNotas.push(notasDisponibles[randomNum]);
       notasDisponibles.splice(randomNum, 1);
     }
-    console.log(arrNotas);
-    return arrNotas;
+    let arrObjNotas = arrNotas.map(nota => ({
+      nombre: nota,
+      sostenido: nota.indexOf("#") !== -1
+    }));
+    return arrObjNotas;
   };
 
   const generarNumero = arr => {
@@ -43,9 +45,9 @@ const App = () => {
 
   return (
     <section className="App">
-      {notasGeneradas.join(" ")}
       <h1>Pitch Class Set</h1>
-      <Pentagrama notas={5} />
+      <Pentagrama notas={notasGeneradas} />
+      {notasGeneradas.map(nota => nota.nombre + " ")}
       <FormOpciones onSubmitOptions={handleSubmit} />
     </section>
   );

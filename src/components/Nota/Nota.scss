@@ -1,0 +1,41 @@
+@import "../../assets/style/colors";
+
+.Nota {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover,
+  &.playing {
+    path {
+      fill: $secundario;
+    }
+  }
+
+  &.A {
+    top: -58px;
+  }
+  &.B {
+    top: -68px;
+  }
+  &.C {
+    top: -76px;
+  }
+  &.D {
+    top: -20px;
+  }
+  &.E {
+    top: -30px;
+  }
+  &.F {
+    top: -38px;
+  }
+  &.G {
+    top: -49px;
+  }
+}

@@ -5,6 +5,7 @@ import "./App.scss";
 
 const App = () => {
   let [notasGeneradas, setNotasGeneradas] = useState([]);
+  let [playing, setPlaying] = useState(false);
 
   const handleSubmit = ({ numNotas }) => {
     setNotasGeneradas(generarNotas(numNotas));
@@ -43,12 +44,23 @@ const App = () => {
     return numero;
   };
 
+  const renderPlayButton = () => {
+    if (notasGeneradas.length !== 0) {
+      return <button onClick={handlePlayClick}>Play</button>;
+    }
+  };
+
+  const handlePlayClick = () => {
+    setPlaying(true);
+  };
+
   return (
     <section className="App">
       <h1>Pitch Class Set</h1>
-      <Pentagrama notas={notasGeneradas} />
+      <Pentagrama notas={notasGeneradas} play={playing} />
       {notasGeneradas.map(nota => nota.nombre + " ")}
       <FormOpciones onSubmitOptions={handleSubmit} />
+      {renderPlayButton()}
     </section>
   );
 };

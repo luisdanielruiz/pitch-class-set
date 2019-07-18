@@ -14,17 +14,20 @@ const Nota = props => {
   }, [props.audio]);
 
   const audio = new Audio(sonidoNota);
-
+  audio.addEventListener("ended", () => {
+    console.log("ended");
+  });
   const handleNoteClick = () => {
     audio.currentTime = 0;
     audio.play();
     console.log(props.numero);
+    console.log(audio.currentTime);
   };
 
   // setTimeout(() => {
   //   audio.play();
   // }, props.numero * 400);
-  
+
   return (
     <button
       className={`Nota ${props.className}`}
@@ -32,7 +35,7 @@ const Nota = props => {
       ref={btnRef}
     >
       {props.sostenido ? <Sostenido /> : null}
-      <Redonda className="redonda" />
+      <Redonda className={`redonda ${props.playing}`} />
     </button>
   );
 };

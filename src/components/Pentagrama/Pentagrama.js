@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Pentagrama.scss";
 import clave from "../../assets/images/clave.png";
 import Nota from "../Nota/Nota";
@@ -15,6 +15,14 @@ const Pentagrama = props => {
       />
     ));
   };
+
+  useEffect(() => {
+    if (props.playing) {
+      for (let nota of props.notas) {
+        setTimeout(console.log("play " + nota), 500);
+      }
+    }
+  }, [props.playing, props.notas]);
 
   return (
     <article className="Pentagrama">
